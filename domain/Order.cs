@@ -30,7 +30,7 @@ namespace software_architectuur_3_xin_jascha.domain
         {
             int counter = 0;
             double totalPrice = 0;
-            
+
             if (IsStudentOrder)
             {
                 for (int i = 0; i < MovieTickets.Count; i++)
@@ -45,17 +45,18 @@ namespace software_architectuur_3_xin_jascha.domain
                     }
                 }
 
-                return totalPrice;
-            } else
+            }
+            else
             {
-                for(int i = 0;i < MovieTickets.Count;i++)
+                for (int i = 0; i < MovieTickets.Count; i++)
                 {
                     counter++;
                     MovieTicket ticket = MovieTickets[i];
                     double singlePrice = calculatePremiumTicket(ticket);
 
                     // For non students, validate if moviescreen is weekday
-                    if (isWorkDay(ticket.GetMovieScreening())){
+                    if (isWorkDay(ticket.GetMovieScreening()))
+                    {
                         if (counter % 2 != 0)
                         {
                             totalPrice += singlePrice;
@@ -65,7 +66,7 @@ namespace software_architectuur_3_xin_jascha.domain
                     {
                         totalPrice += singlePrice;
                     }
-                                    
+                }
                 return totalPrice;
             }
         }
