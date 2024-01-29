@@ -12,7 +12,7 @@ namespace software_architectuur_3_xin_jascha.domain
         private int RowNr {  get; set; }
         private int SeatNr { get; set; }
         private bool IsPremium { get; set; }
-        private MovieScreening MovieScreening;
+        private MovieScreening MovieScreening { get; set; }
 
         public MovieTicket(MovieScreening MovieScreening, bool IsPremiumReservation, int SeatRow, int SeatNr)
         {
@@ -30,6 +30,11 @@ namespace software_architectuur_3_xin_jascha.domain
         public double GetPrice()
         {
             return -1;
+        }
+
+        public MovieScreening GetMovieScreening()
+        {
+            return MovieScreening;
         }
 
         public String ToString()

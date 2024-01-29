@@ -31,6 +31,29 @@ namespace software_architectuur_3_xin_jascha.domain
             return -1;
         }
 
+        private double calculateSecondTicketFree(int indexMovie)
+        {
+            if(indexMovie % 2 == 0 && indexMovie > 0)
+            {
+                return 0;
+            }
+            return MovieTickets[indexMovie].GetPrice();
+        }
+
+        public double calculatePriceAfterDiscount(double totalPriceBefore)
+        {   
+            // Returns total after discount
+            return totalPriceBefore * 0.9;
+        }
+
+        private bool isWorkDay(MovieScreening movieScreening)
+        {
+            // Validates for everybody if moviescree is on weekdays.s
+            int dayOfWeek = (int)movieScreening.DateAndTime.DayOfWeek;
+            return dayOfWeek >= 1 & (dayOfWeek <= 4);
+        }
+
+
         public void Export(TicketExportFormat Format) 
         {
            if(Format == TicketExportFormat.JSON)
@@ -39,8 +62,5 @@ namespace software_architectuur_3_xin_jascha.domain
                 Console.WriteLine(henk);
             }
         }
-
-
-
     }
 }
