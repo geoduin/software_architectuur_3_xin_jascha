@@ -12,10 +12,14 @@ namespace software_architectuur_3_xin_jascha.domain
         private int RowNr {  get; set; }
         private int SeatNr { get; set; }
         private bool IsPremium { get; set; }
+        private MovieScreening MovieScreening;
 
-        public MovieTicket(MovieScreening movieScreening, bool IsPremiumReservation, int SeatRow, int SeatNr)
+        public MovieTicket(MovieScreening MovieScreening, bool IsPremiumReservation, int SeatRow, int SeatNr)
         {
-
+            this.RowNr = SeatRow;
+            this.SeatNr = SeatNr;
+            this.IsPremium = IsPremiumReservation;
+            this.MovieScreening = MovieScreening;
         }
 
         public bool IsPremiumTicket()

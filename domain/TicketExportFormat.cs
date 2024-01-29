@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace software_architectuur_3_xin_jascha.domain
 {
-    internal class TicketExportFormat
+    internal enum TicketExportFormat
     {
+        PLAINTEXT = 0,
+        JSON = 1
     }
 }
