@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace software_architectuur_3_xin_jascha.domain
@@ -31,7 +33,11 @@ namespace software_architectuur_3_xin_jascha.domain
 
         public void Export(TicketExportFormat Format) 
         {
-           
+           if(Format == TicketExportFormat.JSON)
+            {
+                var henk = JsonSerializer.Serialize(this);
+                Console.WriteLine(henk);
+            }
         }
 
 

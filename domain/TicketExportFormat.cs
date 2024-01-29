@@ -8,7 +8,7 @@ namespace software_architectuur_3_xin_jascha.domain
 {
     internal enum TicketExportFormat
     {
-        PLAINTEXT = 0,
-        JSON = 1
+        PLAINTEXT,
+        JSON
     }
 }

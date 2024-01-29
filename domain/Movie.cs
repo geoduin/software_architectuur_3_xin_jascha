@@ -15,14 +15,14 @@ namespace software_architectuur_3_xin_jascha.domain
             Title = title;
         }
 
-        public void AddScreening(MovieScreening: MovieScreening)
+        public void AddScreening(MovieScreening MovieScreening)
         {
 
         }
 
         public static string ToString()
         {
-            return ""
+            return "";
         }
     }
 }
