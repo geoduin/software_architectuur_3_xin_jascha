@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace software_architectuur_3_xin_jascha.domain
 {
-    internal class Order
+    public class Order
     {
         private int OrderNr {  get; set; }
         private bool IsStudentOrder { get; set; }
@@ -23,7 +23,7 @@ namespace software_architectuur_3_xin_jascha.domain
 
         public void AddSeatReservation(MovieTicket Ticket)
         {
-
+            MovieTickets.Add(Ticket);
         }
 
         public double CalculatePrice()
@@ -67,8 +67,8 @@ namespace software_architectuur_3_xin_jascha.domain
                         totalPrice += singlePrice;
                     }
                 }
-                return totalPrice;
             }
+            return totalPrice;
         }
 
         private double calculatePremiumTicket(MovieTicket Ticket)
@@ -103,9 +103,9 @@ namespace software_architectuur_3_xin_jascha.domain
         }
 
 
-        public void Export(TicketExportFormat Format) 
+        public void Export(TicketExportFormat Format)
         {
-           if(Format == TicketExportFormat.JSON)
+            if (Format == TicketExportFormat.JSON)
             {
                 var henk = JsonSerializer.Serialize(this);
                 Console.WriteLine(henk);

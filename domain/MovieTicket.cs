@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace software_architectuur_3_xin_jascha.domain
 {
 
-    internal class MovieTicket
+    public class MovieTicket
     {
         private int RowNr {  get; set; }
         private int SeatNr { get; set; }
@@ -29,7 +29,7 @@ namespace software_architectuur_3_xin_jascha.domain
 
         public double GetPrice()
         {
-            return -1;
+            return MovieScreening.GetPricePerSeat();
         }
 
         public MovieScreening GetMovieScreening()

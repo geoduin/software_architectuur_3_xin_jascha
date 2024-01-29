@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace software_architectuur_3_xin_jascha.domain
 {
-    internal class MovieScreening
+    public class MovieScreening
     {
         public DateTime DateAndTime { get; set; }
         public double PricePerSeat { get; set; }
