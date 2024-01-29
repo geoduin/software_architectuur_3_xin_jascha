@@ -28,22 +28,70 @@ namespace software_architectuur_3_xin_jascha.domain
 
         public double CalculatePrice()
         {
-            return -1;
+            int counter = 0;
+            double totalPrice = 0;
+            
+            if (IsStudentOrder)
+            {
+                for (int i = 0; i < MovieTickets.Count; i++)
+                {
+                    counter++;
+                    MovieTicket ticket = MovieTickets[i];
+                    double singlePrice = calculatePremiumTicket(ticket);
+
+                    if (counter % 2 != 0)
+                    {
+                        totalPrice += singlePrice;
+                    }
+                }
+
+                return totalPrice;
+            } else
+            {
+                for(int i = 0;i < MovieTickets.Count;i++)
+                {
+                    counter++;
+                    MovieTicket ticket = MovieTickets[i];
+                    double singlePrice = calculatePremiumTicket(ticket);
+
+                    // For non students, validate if moviescreen is weekday
+                    if (isWorkDay(ticket.GetMovieScreening())){
+                        if (counter % 2 != 0)
+                        {
+                            totalPrice += singlePrice;
+                        }
+                    }
+                    else
+                    {
+                        totalPrice += singlePrice;
+                    }
+                                    
+                return totalPrice;
+            }
         }
 
-        private double calculateSecondTicketFree(int indexMovie)
+        private double calculatePremiumTicket(MovieTicket Ticket)
         {
-            if(indexMovie % 2 == 0 && indexMovie > 0)
+            
+            if (Ticket.IsPremiumTicket())
             {
-                return 0;
+                if (IsStudentOrder)
+                {
+                    return Ticket.GetPrice() + 2;
+                }
+                return Ticket.GetPrice() + 2;
             }
-            return MovieTickets[indexMovie].GetPrice();
+            return Ticket.GetPrice();
         }
 
         public double calculatePriceAfterDiscount(double totalPriceBefore)
         {   
             // Returns total after discount
-            return totalPriceBefore * 0.9;
+            if(MovieTickets.Count >= 6)
+            {
+                return totalPriceBefore * 0.9;
+            }
+            return totalPriceBefore;
         }
 
         private bool isWorkDay(MovieScreening movieScreening)
