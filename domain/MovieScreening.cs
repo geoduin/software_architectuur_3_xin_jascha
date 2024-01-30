@@ -23,9 +23,14 @@ namespace software_architectuur_3_xin_jascha.domain
             return PricePerSeat;
         }
 
-        public static string ToString()
+        
+        public string ToString()
         {
-            return "s";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("DateTime: " + DateAndTime.ToString() + "\n");
+            sb.Append("PricePerSeat: " + PricePerSeat + "\n");
+            sb.Append("Movie: " + this.Movie.ToString() + "\n");
+            return sb.ToString();
         }
     }
 }

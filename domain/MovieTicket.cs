@@ -9,10 +9,10 @@ namespace software_architectuur_3_xin_jascha.domain
 
     public class MovieTicket
     {
-        private int RowNr {  get; set; }
-        private int SeatNr { get; set; }
-        private bool IsPremium { get; set; }
-        private MovieScreening MovieScreening { get; set; }
+        public int RowNr {  get; set; }
+        public int SeatNr { get; set; }
+        public bool IsPremium { get; set; }
+        public MovieScreening MovieScreening { get; set; }
 
         public MovieTicket(MovieScreening MovieScreening, bool IsPremiumReservation, int SeatRow, int SeatNr)
         {
@@ -39,7 +39,12 @@ namespace software_architectuur_3_xin_jascha.domain
 
         public String ToString()
         {
-            return "henk";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("RowNr: " + this.RowNr + "\n");
+            sb.Append("SeatNr: " + this.SeatNr + "\n");
+            sb.Append("IsPremium: " + this.IsPremium + "\n");
+            sb.Append("MovieScreening: " + this.MovieScreening.ToString() + "\n");
+            return sb.ToString();
         }
     }
 }

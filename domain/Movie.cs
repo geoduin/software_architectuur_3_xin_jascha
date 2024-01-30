@@ -20,9 +20,9 @@ namespace software_architectuur_3_xin_jascha.domain
 
         }
 
-        public static string ToString()
+        public string ToString()
         {
-            return "";
+            return "Title: " + this.Title + "\n";
         }
     }
 }

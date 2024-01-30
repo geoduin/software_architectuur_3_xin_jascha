@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,9 @@ namespace software_architectuur_3_xin_jascha.domain
 {
     public class Order
     {
-        private int OrderNr {  get; set; }
-        private bool IsStudentOrder { get; set; }
-        private List<MovieTicket> MovieTickets;
+        public int OrderNr {  get; set; }
+        public bool IsStudentOrder { get; set; }
+        public List<MovieTicket> MovieTickets { get; set; }
 
         public Order(int OrderNr, bool IsStudentOrder)
         {
@@ -107,9 +108,25 @@ namespace software_architectuur_3_xin_jascha.domain
         {
             if (Format == TicketExportFormat.JSON)
             {
-                var henk = JsonSerializer.Serialize(this);
-                Console.WriteLine(henk);
+                File.WriteAllText("C:\\Temp\\test.json", JsonConvert.SerializeObject(this));
             }
+            else
+            {
+                File.WriteAllText("C:\\Temp\\test.txt", this.ToString());
+            }
+        }
+
+        override
+        public String ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("OrderNr: " + OrderNr + "\n");
+            sb.Append("Is student order: " + IsStudentOrder + "\n");
+            MovieTickets.ForEach(t =>
+            {
+                sb.Append(t.ToString() + "\n");
+            });
+            return sb.ToString();
         }
     }
 }
