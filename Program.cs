@@ -3,6 +3,13 @@ using software_architectuur_3_xin_jascha.domain;
 using Xunit;
 
 Console.WriteLine("Hello, World!");
+// Export format
+Order Test = new Order(1, true);
+var Movie = new Movie("Steamboat Willie");
+var Screening = new MovieScreening(Movie, DateTime.Now, 10.50);
+var Ticket = new MovieTicket(Screening, false, 1, 1);
+Test.AddSeatReservation(Ticket);
+Test.Export(TicketExportFormat.JSON);
 
 // Student order
 DateTime monday = new DateTime(2024, 01, 29);

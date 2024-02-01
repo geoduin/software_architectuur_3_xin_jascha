@@ -9,6 +9,7 @@ namespace software_architectuur_3_xin_jascha.domain
     public class Movie
     {
         public string Title { get; set; }
+        public List<MovieScreening> Screens { get; set; }
 
         public Movie(string title)
         {
@@ -17,7 +18,7 @@ namespace software_architectuur_3_xin_jascha.domain
 
         public void AddScreening(MovieScreening MovieScreening)
         {
-
+            Screens.Add(MovieScreening);
         }
 
         public string ToString()

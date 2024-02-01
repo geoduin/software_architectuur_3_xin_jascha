@@ -58,16 +58,19 @@ namespace software_architectuur_3_xin_jascha.domain
         }
         private double CalculatePremiumTicket(MovieTicket Ticket)
         {
-            
-            if (Ticket.IsPremiumTicket())
+            bool isPremium = Ticket.IsPremiumTicket();
+            if (isPremium && IsStudentOrder)
             {
-                if (IsStudentOrder)
-                {
-                    return Ticket.GetPrice() + 2;
-                }
+                return Ticket.GetPrice() + 2;
+            } 
+            else if (isPremium)
+            {
                 return Ticket.GetPrice() + 3;
             }
-            return Ticket.GetPrice();
+            else
+            {
+                return Ticket.GetPrice();
+            }
         }
         private double CalculatePriceAfterDiscount(double totalPriceBefore)
         {   
