@@ -35,17 +35,28 @@ namespace software_architectuur_3_xin_jascha.domain
             {
                 counter++;
                 MovieTicket ticket = MovieTickets[i];
-                double singlePrice = calculatePremiumTicket(ticket);
-                
-                if (IsStudentOrder || isWorkDay(ticket.GetMovieScreening()) && counter % 2 != 0)
-                {
-                    totalPrice += singlePrice;
-                }
+                bool isSecond = counter % 2 == 0;
+                bool _is_work_Day = IsWorkDay(ticket.GetMovieScreening());
+                double singlePrice = CalculatePremiumTicket(ticket);
+                // Checks if order is either a studentorder/regular user on weekday and ticket is the second of ticket of the order. 
+                totalPrice = CalculateSecondTicket(totalPrice, singlePrice, isSecond, _is_work_Day);
             }
-            return totalPrice;
+            // Apply discount
+            return CalculatePriceAfterDiscount(totalPrice);
         }
 
-        private double calculatePremiumTicket(MovieTicket Ticket)
+        private double CalculateSecondTicket(double currentTotal, double price, bool isSecond, bool isWorkDay)
+        {
+            if ((isWorkDay || IsStudentOrder) && isSecond)
+            {
+                return currentTotal;
+            }
+            else
+            {
+                return currentTotal + price;
+            }
+        }
+        private double CalculatePremiumTicket(MovieTicket Ticket)
         {
             
             if (Ticket.IsPremiumTicket())
@@ -54,12 +65,11 @@ namespace software_architectuur_3_xin_jascha.domain
                 {
                     return Ticket.GetPrice() + 2;
                 }
-                return Ticket.GetPrice() + 2;
+                return Ticket.GetPrice() + 3;
             }
             return Ticket.GetPrice();
         }
-
-        public double calculatePriceAfterDiscount(double totalPriceBefore)
+        private double CalculatePriceAfterDiscount(double totalPriceBefore)
         {   
             // Returns total after discount
             if(MovieTickets.Count >= 6)
@@ -68,14 +78,12 @@ namespace software_architectuur_3_xin_jascha.domain
             }
             return totalPriceBefore;
         }
-
-        private bool isWorkDay(MovieScreening movieScreening)
+        private bool IsWorkDay(MovieScreening movieScreening)
         {
             // Validates for everybody if moviescree is on weekdays.s
             int dayOfWeek = (int)movieScreening.DateAndTime.DayOfWeek;
             return dayOfWeek >= 1 & (dayOfWeek <= 4);
         }
-
 
         public void Export(TicketExportFormat Format)
         {
